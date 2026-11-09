@@ -7,7 +7,10 @@ use Boogle\Core\Router;
 use Boogle\Core\Session;
 use Boogle\Core\View;
 
-/** Liste des parties. Les données sont fictives : le moteur de jeu n'est pas encore branché. */
+/**
+ * Liste des parties. Les données sont fictives : le moteur de jeu n'est pas encore branché.
+ * Le paramètre etat=vide affiche la démonstration de l'état sans partie.
+ */
 final class PartieController
 {
     private const PARTIES_DEMO = [
@@ -20,9 +23,12 @@ final class PartieController
 
     public function liste(): void
     {
+        $etatVide = ($_GET['etat'] ?? '') === 'vide';
+
         View::rendre('parties', [
-            'titre'   => 'Vos parties',
-            'parties' => self::PARTIES_DEMO,
+            'titre'    => 'Vos parties',
+            'parties'  => $etatVide ? [] : self::PARTIES_DEMO,
+            'etatVide' => $etatVide,
         ]);
     }
 

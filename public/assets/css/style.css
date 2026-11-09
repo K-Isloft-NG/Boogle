@@ -565,6 +565,38 @@ h2 {
     padding: var(--space-9) var(--space-6);
 }
 
+.etat-vide h2 {
+    margin: var(--space-6) 0 var(--space-2);
+}
+
+.etat-vide p {
+    max-width: 30em;
+    margin: 0 auto var(--space-5);
+    color: var(--color-text-muted);
+}
+
+.etat-vide .bouton--plein {
+    width: auto;
+}
+
+.etat-vide .etat-vide-note {
+    margin: var(--space-5) auto 0;
+    font-size: var(--text-sm);
+}
+
+.grille--vide {
+    grid-template-columns: repeat(4, 36px);
+    gap: var(--space-1);
+    justify-content: center;
+}
+
+.grille--vide .de {
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border-color: var(--color-border);
+}
+
 /* En-tête : navigation */
 .entete-nav {
     display: flex;
