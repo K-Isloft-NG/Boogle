@@ -449,6 +449,10 @@ h2 {
 
 /* Boutons */
 .bouton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
     height: var(--control-height);
     padding: 0 var(--space-5);
     font: inherit;
@@ -560,6 +564,68 @@ h2 {
     padding: var(--space-9) var(--space-6);
 }
 
+/* En-tête : navigation */
+.entete-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+}
+
+/* Accueil : le bloc de connexion est aligné sur le titre */
+.accueil .carte--auth {
+    margin-top: var(--space-7);
+}
+
+.accueil-regles p {
+    margin: 0;
+}
+
+/* Page des règles */
+.regles-detail {
+    max-width: 44rem;
+}
+
+.regles-detail h1 {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+}
+
+.regles-detail .chapeau {
+    margin-bottom: 0;
+}
+
+.regles-detail h2 {
+    margin: var(--space-8) 0 var(--space-3);
+    font-size: var(--text-xl);
+}
+
+.regles-detail p,
+.regles-detail li {
+    max-width: 40rem;
+}
+
+.regles-detail ul {
+    padding-left: var(--space-5);
+}
+
+.regles-detail li {
+    margin-bottom: var(--space-2);
+}
+
+.regles-detail .grille-demo {
+    margin: var(--space-5) 0 0;
+}
+
+.regles-detail .legende {
+    max-width: 24rem;
+    font-family: var(--font-sans);
+}
+
+.regles-detail .actions {
+    margin-top: var(--space-8);
+}
+
 /* Écrans étroits */
 @media (max-width: 900px) {
     .accueil {
@@ -567,8 +633,13 @@ h2 {
         gap: var(--space-7);
     }
 
-    .titre-principal {
+    .titre-principal,
+    .regles-detail h1 {
         font-size: var(--text-2xl);
+    }
+
+    .accueil .carte--auth {
+        margin-top: 0;
     }
 
     :root {

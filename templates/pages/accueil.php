@@ -7,8 +7,9 @@
 use Boogle\Core\Csrf;
 
 // Grille de démonstration : les cases actives forment le mot BOOGLE.
-$lettres = ['B', 'O', 'O', 'G', 'S', 'A', 'E', 'L', 'N', 'I', 'M', 'U', 'T', 'E', 'R', 'D'];
+$lettres = GRILLE_DEMO;
 $actives = [0, 1, 2, 3, 6, 7];
+$description = 'Exemple de grille de 16 lettres où le mot BOOGLE est formé avec des lettres voisines';
 ?>
 <div class="accueil">
     <section class="accueil-presentation">
@@ -18,19 +19,18 @@ $actives = [0, 1, 2, 3, 6, 7];
 
         <div class="accueil-jeu">
             <figure class="grille-demo">
-                <div class="grille" role="img" aria-label="Exemple de grille de 16 lettres où le mot BOOGLE est formé avec des lettres voisines">
-                    <?php foreach ($lettres as $position => $lettre): ?>
-                        <span class="de<?= in_array($position, $actives, true) ? ' de--actif' : '' ?>"><?= e($lettre) ?></span>
-                    <?php endforeach; ?>
-                </div>
+                <?php require RACINE . '/templates/partials/grille.php'; ?>
                 <figcaption class="legende">B·O·O·G·L·E : 6 lettres voisines</figcaption>
             </figure>
 
-            <ol class="regles" id="regles">
-                <li><span class="regles-numero">01</span> Une grille de 16 lettres tirée au hasard.</li>
-                <li><span class="regles-numero">02</span> Reliez des lettres qui se touchent, même en diagonale.</li>
-                <li><span class="regles-numero">03</span> Chaque mot de 3 lettres ou plus rapporte des points.</li>
-            </ol>
+            <div class="accueil-regles">
+                <ol class="regles">
+                    <li><span class="regles-numero">01</span> Une grille de 16 lettres tirée au hasard.</li>
+                    <li><span class="regles-numero">02</span> Reliez des lettres qui se touchent, même en diagonale.</li>
+                    <li><span class="regles-numero">03</span> Chaque mot de 3 lettres ou plus rapporte des points.</li>
+                </ol>
+                <p><a class="lien" href="/?page=comment-jouer">Lire les règles en détail</a></p>
+            </div>
         </div>
     </section>
 

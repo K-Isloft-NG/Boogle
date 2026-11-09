@@ -28,17 +28,18 @@ use Boogle\Core\Session;
                 <span class="marque-logo" aria-hidden="true"><?php for ($i = 0; $i < 9; $i++): ?><span></span><?php endfor; ?></span>
                 Boogle
             </a>
-            <?php if (Session::estConnecte()): ?>
-                <div class="session">
-                    <span class="session-texte">Connecté : <strong><?= e(Session::pseudo()) ?></strong></span>
-                    <form method="post" action="/?page=deconnexion">
-                        <?= Csrf::champ() ?>
-                        <button class="bouton bouton--secondaire" type="submit">Se déconnecter</button>
-                    </form>
-                </div>
-            <?php else: ?>
-                <a class="lien" href="/#regles">Comment jouer</a>
-            <?php endif; ?>
+            <nav class="entete-nav" aria-label="Navigation principale">
+                <a class="lien" href="/?page=comment-jouer">Comment jouer</a>
+                <?php if (Session::estConnecte()): ?>
+                    <div class="session">
+                        <span class="session-texte">Connecté : <strong><?= e(Session::pseudo()) ?></strong></span>
+                        <form method="post" action="/?page=deconnexion">
+                            <?= Csrf::champ() ?>
+                            <button class="bouton bouton--secondaire" type="submit">Se déconnecter</button>
+                        </form>
+                    </div>
+                <?php endif; ?>
+            </nav>
         </div>
     </header>
 

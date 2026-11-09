@@ -7,12 +7,18 @@ use Boogle\Controller\AccueilController;
 use Boogle\Controller\AuthController;
 use Boogle\Controller\MotDePasseController;
 use Boogle\Controller\PartieController;
+use Boogle\Controller\ReglesController;
 use Boogle\Core\Router;
 
 // Liste blanche des pages : toute valeur de ?page= absente de ce tableau renvoie une erreur 404.
 $routeur = new Router([
     'accueil' => [
         'controleur' => AccueilController::class,
+        'actions'    => ['GET' => 'afficher'],
+        'prive'      => false,
+    ],
+    'comment-jouer' => [
+        'controleur' => ReglesController::class,
         'actions'    => ['GET' => 'afficher'],
         'prive'      => false,
     ],
