@@ -1,26 +1,51 @@
 <?php
 declare(strict_types=1);
 
-// PAGE TEMPORAIRE : sert uniquement à valider le déploiement Render et la connexion Neon.
-// Elle sera remplacée par le contrôleur frontal (allowlist de pages).
+require __DIR__ . '/../src/bootstrap.php';
 
-header('Content-Type: text/plain; charset=UTF-8');
+use Boogle\Controller\AccueilController;
+use Boogle\Controller\AuthController;
+use Boogle\Controller\PartieController;
+use Boogle\Core\Router;
 
-echo "Boogle : serveur PHP en ligne.\n";
+// Liste blanche des pages : toute valeur de ?page= absente de ce tableau renvoie une erreur 404.
+$routeur = new Router([
+    'accueil' => [
+        'controleur' => AccueilController::class,
+        'action'     => 'afficher',
+        'methodes'   => ['GET'],
+        'prive'      => false,
+    ],
+    'inscription' => [
+        'controleur' => AuthController::class,
+        'action'     => 'inscription',
+        'methodes'   => ['POST'],
+        'prive'      => false,
+    ],
+    'connexion' => [
+        'controleur' => AuthController::class,
+        'action'     => 'connexion',
+        'methodes'   => ['POST'],
+        'prive'      => false,
+    ],
+    'deconnexion' => [
+        'controleur' => AuthController::class,
+        'action'     => 'deconnexion',
+        'methodes'   => ['POST'],
+        'prive'      => true,
+    ],
+    'parties' => [
+        'controleur' => PartieController::class,
+        'action'     => 'liste',
+        'methodes'   => ['GET'],
+        'prive'      => true,
+    ],
+    'nouvelle-partie' => [
+        'controleur' => PartieController::class,
+        'action'     => 'nouvelle',
+        'methodes'   => ['POST'],
+        'prive'      => true,
+    ],
+]);
 
-try {
-    $dsn = sprintf(
-        'pgsql:host=%s;port=%s;dbname=%s;sslmode=%s',
-        getenv('DB_HOST') ?: '',
-        getenv('DB_PORT') ?: '5432',
-        getenv('DB_NAME') ?: '',
-        getenv('DB_SSLMODE') ?: 'require'
-    );
-    new PDO($dsn, getenv('DB_USER') ?: '', getenv('DB_PASS') ?: '', [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    ]);
-    echo "Base de données : OK\n";
-} catch (Throwable $erreur) {
-    error_log('Test BDD : ' . $erreur->getMessage());
-    echo "Base de données : indisponible\n";
-}
+$routeur->repartir();
