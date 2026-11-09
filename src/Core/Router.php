@@ -10,7 +10,8 @@ namespace Boogle\Core;
 final class Router
 {
     /**
-     * @param array<string, array{controleur: class-string, action: string, methodes: list<string>, prive: bool}> $routes
+     * @param array<string, array{controleur: class-string, actions: array<string, string>, prive: bool}> $routes
+     *        actions : méthode HTTP => méthode du contrôleur
      */
     public function __construct(private readonly array $routes)
     {
@@ -33,8 +34,8 @@ final class Router
             $methode = 'GET';
         }
 
-        if (!in_array($methode, $route['methodes'], true)) {
-            header('Allow: ' . implode(', ', $route['methodes']));
+        if (!isset($route['actions'][$methode])) {
+            header('Allow: ' . implode(', ', array_keys($route['actions'])));
             View::rendre('erreur', [
                 'titre'   => 'Méthode non autorisée',
                 'message' => 'Cette action n’est pas autorisée.',
@@ -53,7 +54,7 @@ final class Router
         }
 
         $controleur = new $route['controleur']();
-        $controleur->{$route['action']}();
+        $controleur->{$route['actions'][$methode]}();
     }
 
     /** Redirection 303 : après un POST, le navigateur rechargera la page suivante en GET. */

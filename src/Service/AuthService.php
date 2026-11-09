@@ -49,16 +49,7 @@ final class AuthService
             $erreurs['email'] = 'Saisissez une adresse e-mail valide.';
         }
 
-        if (mb_strlen($motDePasse) < 12) {
-            $erreurs['mot_de_passe'] = 'Le mot de passe doit contenir au moins 12 caractères.';
-        } elseif (strlen($motDePasse) > 72) {
-            // bcrypt ignore tout ce qui dépasse 72 octets : on refuse plutôt que de tronquer en silence.
-            $erreurs['mot_de_passe'] = 'Le mot de passe ne doit pas dépasser 72 caractères.';
-        }
-
-        if ($motDePasse !== $confirmation) {
-            $erreurs['confirmation'] = 'Les deux mots de passe ne correspondent pas.';
-        }
+        $erreurs += self::validerMotDePasse($motDePasse, $confirmation);
 
         if ($erreurs !== []) {
             return $erreurs;
@@ -106,6 +97,29 @@ final class AuthService
         $this->tentatives->enregistrer($emailHmac, $ipHmac, $valide, $maintenant);
 
         return $valide ? $utilisateur : null;
+    }
+
+    /**
+     * Règles communes à la création de compte et à la réinitialisation.
+     *
+     * @return array<string, string>
+     */
+    public static function validerMotDePasse(string $motDePasse, string $confirmation): array
+    {
+        $erreurs = [];
+
+        if (mb_strlen($motDePasse) < 12) {
+            $erreurs['mot_de_passe'] = 'Le mot de passe doit contenir au moins 12 caractères.';
+        } elseif (strlen($motDePasse) > 72) {
+            // bcrypt ignore tout ce qui dépasse 72 octets : on refuse plutôt que de tronquer en silence.
+            $erreurs['mot_de_passe'] = 'Le mot de passe ne doit pas dépasser 72 caractères.';
+        }
+
+        if ($motDePasse !== $confirmation) {
+            $erreurs['confirmation'] = 'Les deux mots de passe ne correspondent pas.';
+        }
+
+        return $erreurs;
     }
 
     private static function normaliserEmail(string $email): string

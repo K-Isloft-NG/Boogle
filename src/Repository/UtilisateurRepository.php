@@ -68,4 +68,30 @@ final class UtilisateurRepository
             throw $erreur;
         }
     }
+
+    public function trouverParId(int $id): ?Utilisateur
+    {
+        $requete = $this->pdo->prepare(
+            'SELECT id, pseudo, email, mot_de_passe_hash FROM php_utilisateurs WHERE id = :id'
+        );
+        $requete->execute([':id' => $id]);
+        $ligne = $requete->fetch();
+
+        if ($ligne === false) {
+            return null;
+        }
+
+        return new Utilisateur(
+            (int) $ligne['id'],
+            (string) $ligne['pseudo'],
+            (string) $ligne['email'],
+            (string) $ligne['mot_de_passe_hash']
+        );
+    }
+
+    public function changerMotDePasse(int $id, string $motDePasseHash): void
+    {
+        $requete = $this->pdo->prepare('UPDATE php_utilisateurs SET mot_de_passe_hash = :hash WHERE id = :id');
+        $requete->execute([':hash' => $motDePasseHash, ':id' => $id]);
+    }
 }

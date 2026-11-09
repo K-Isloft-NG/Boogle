@@ -5,6 +5,7 @@ require __DIR__ . '/../src/bootstrap.php';
 
 use Boogle\Controller\AccueilController;
 use Boogle\Controller\AuthController;
+use Boogle\Controller\MotDePasseController;
 use Boogle\Controller\PartieController;
 use Boogle\Core\Router;
 
@@ -12,38 +13,42 @@ use Boogle\Core\Router;
 $routeur = new Router([
     'accueil' => [
         'controleur' => AccueilController::class,
-        'action'     => 'afficher',
-        'methodes'   => ['GET'],
-        'prive'      => false,
-    ],
-    'inscription' => [
-        'controleur' => AuthController::class,
-        'action'     => 'inscription',
-        'methodes'   => ['POST'],
+        'actions'    => ['GET' => 'afficher'],
         'prive'      => false,
     ],
     'connexion' => [
         'controleur' => AuthController::class,
-        'action'     => 'connexion',
-        'methodes'   => ['POST'],
+        'actions'    => ['POST' => 'connexion'],
+        'prive'      => false,
+    ],
+    'inscription' => [
+        'controleur' => AuthController::class,
+        'actions'    => ['GET' => 'formulaireInscription', 'POST' => 'inscription'],
+        'prive'      => false,
+    ],
+    'mot-de-passe-oublie' => [
+        'controleur' => MotDePasseController::class,
+        'actions'    => ['GET' => 'formulaireOubli', 'POST' => 'demande'],
+        'prive'      => false,
+    ],
+    'reinitialisation' => [
+        'controleur' => MotDePasseController::class,
+        'actions'    => ['GET' => 'formulaireReinitialisation', 'POST' => 'reinitialisation'],
         'prive'      => false,
     ],
     'deconnexion' => [
         'controleur' => AuthController::class,
-        'action'     => 'deconnexion',
-        'methodes'   => ['POST'],
+        'actions'    => ['POST' => 'deconnexion'],
         'prive'      => true,
     ],
     'parties' => [
         'controleur' => PartieController::class,
-        'action'     => 'liste',
-        'methodes'   => ['GET'],
+        'actions'    => ['GET' => 'liste'],
         'prive'      => true,
     ],
     'nouvelle-partie' => [
         'controleur' => PartieController::class,
-        'action'     => 'nouvelle',
-        'methodes'   => ['POST'],
+        'actions'    => ['POST' => 'nouvelle'],
         'prive'      => true,
     ],
 ]);

@@ -6,6 +6,7 @@ namespace Boogle\Controller;
 use Boogle\Core\Database;
 use Boogle\Core\Router;
 use Boogle\Core\Session;
+use Boogle\Core\View;
 use Boogle\Repository\TentativeConnexionRepository;
 use Boogle\Repository\UtilisateurRepository;
 use Boogle\Service\AuthService;
@@ -15,6 +16,15 @@ use Boogle\Service\ConnexionVerrouilleeException;
 final class AuthController
 {
     private ?AuthService $auth = null;
+
+    public function formulaireInscription(): void
+    {
+        if (Session::estConnecte()) {
+            Router::rediriger('parties');
+        }
+
+        self::rendreInscription();
+    }
 
     public function inscription(): void
     {
@@ -29,10 +39,7 @@ final class AuthController
         );
 
         if ($erreurs !== []) {
-            AccueilController::rendre([
-                'erreursInscription' => $erreurs,
-                'ancien'             => ['inscription_pseudo' => $pseudo, 'inscription_email' => $email],
-            ], 422);
+            self::rendreInscription($erreurs, ['pseudo' => $pseudo, 'email' => $email], 422);
             return;
         }
 
@@ -75,6 +82,19 @@ final class AuthController
         Session::demarrer();
         Session::ajouterMessage('info', 'Vous êtes déconnecté.');
         Router::rediriger('accueil');
+    }
+
+    /**
+     * @param array<string, string> $erreurs
+     * @param array<string, string> $ancien
+     */
+    private static function rendreInscription(array $erreurs = [], array $ancien = [], int $statut = 200): void
+    {
+        View::rendre('inscription', [
+            'titre'   => 'Créer un compte',
+            'erreurs' => $erreurs,
+            'ancien'  => $ancien,
+        ], $statut);
     }
 
     private function auth(): AuthService

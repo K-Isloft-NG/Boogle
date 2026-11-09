@@ -11,6 +11,7 @@ use Boogle\Core\View;
 final class PartieController
 {
     private const PARTIES_DEMO = [
+        ['date' => '09/11/2026', 'adversaires' => 'Marie',         'score' => 12, 'mots' => 5,  'statut' => 'En cours'],
         ['date' => '08/11/2026', 'adversaires' => 'Marie, Paul',   'score' => 42, 'mots' => 14, 'statut' => 'Terminée'],
         ['date' => '05/11/2026', 'adversaires' => 'Jean',          'score' => 37, 'mots' => 12, 'statut' => 'Terminée'],
         ['date' => '02/11/2026', 'adversaires' => 'Marie, Claude', 'score' => 18, 'mots' => 7,  'statut' => 'Abandonnée'],
@@ -20,7 +21,7 @@ final class PartieController
     public function liste(): void
     {
         View::rendre('parties', [
-            'titre'  => 'Mes parties',
+            'titre'   => 'Vos parties',
             'parties' => self::PARTIES_DEMO,
         ]);
     }

@@ -16,22 +16,30 @@ use Boogle\Core\Session;
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= e($titre) ?> | Boogle</title>
+    <link rel="preload" href="/assets/fonts/geist-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
     <a class="lien-evitement" href="#contenu">Aller au contenu</a>
 
     <header class="entete">
-        <a class="marque" href="/">Boogle</a>
-        <?php if (Session::estConnecte()): ?>
-            <div class="session">
-                <span class="session-pseudo"><?= e(Session::pseudo()) ?></span>
-                <form method="post" action="/?page=deconnexion">
-                    <?= Csrf::champ() ?>
-                    <button class="bouton bouton--discret" type="submit">Se déconnecter</button>
-                </form>
-            </div>
-        <?php endif; ?>
+        <div class="entete-interieur">
+            <a class="marque" href="/">
+                <span class="marque-logo" aria-hidden="true"><?php for ($i = 0; $i < 9; $i++): ?><span></span><?php endfor; ?></span>
+                Boogle
+            </a>
+            <?php if (Session::estConnecte()): ?>
+                <div class="session">
+                    <span class="session-texte">Connecté : <strong><?= e(Session::pseudo()) ?></strong></span>
+                    <form method="post" action="/?page=deconnexion">
+                        <?= Csrf::champ() ?>
+                        <button class="bouton bouton--secondaire" type="submit">Se déconnecter</button>
+                    </form>
+                </div>
+            <?php else: ?>
+                <a class="lien" href="/#regles">Comment jouer</a>
+            <?php endif; ?>
+        </div>
     </header>
 
     <main class="contenu" id="contenu">
@@ -43,7 +51,7 @@ use Boogle\Core\Session;
     </main>
 
     <footer class="pied">
-        <p>Boogle, projet de SAÉ, BUT Informatique.</p>
+        <p>Boogle, projet de SAÉ, BUT Informatique, Université Gustave Eiffel.</p>
     </footer>
 </body>
 </html>

@@ -35,6 +35,6 @@ header('X-Frame-Options: DENY');
 header('Referrer-Policy: strict-origin-when-cross-origin');
 
 Config::charger(RACINE);
-Config::exiger(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS', 'SEL_APPLICATIF']);
+Config::exiger(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS', 'SEL_APPLICATIF', 'APP_URL', 'BREVO_API_KEY', 'MAIL_EXPEDITEUR']);
 
 Session::demarrer();

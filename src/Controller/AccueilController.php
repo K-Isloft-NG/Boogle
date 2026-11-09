@@ -19,18 +19,16 @@ final class AccueilController
     }
 
     /**
-     * Affiche la page d'accueil avec les formulaires de connexion et d'inscription.
-     * Les autres contrôleurs l'utilisent pour réafficher la page avec des erreurs.
+     * Affiche la page d'accueil avec le formulaire de connexion.
      *
      * @param array<string, mixed> $donnees
      */
     public static function rendre(array $donnees = [], int $statut = 200): void
     {
         View::rendre('accueil', $donnees + [
-            'titre'             => 'Accueil',
-            'erreursInscription' => [],
-            'erreurConnexion'   => null,
-            'ancien'            => [],
+            'titre'           => 'Accueil',
+            'erreurConnexion' => null,
+            'ancien'          => [],
         ], $statut);
     }
 }
