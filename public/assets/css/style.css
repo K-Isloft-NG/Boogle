@@ -232,7 +232,35 @@ h2 {
     border-top: 1px solid var(--color-border);
     color: var(--color-text-muted);
     font-size: var(--text-sm);
-    text-align: center;
+}
+
+.pied-interieur {
+    max-width: var(--largeur-max);
+    margin: 0 auto;
+    padding: var(--space-5);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3) var(--space-6);
+}
+
+.pied-mention {
+    margin: 0;
+}
+
+.pied-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+}
+
+.pied-nav .lien {
+    color: var(--color-text-muted);
+}
+
+.pied-nav .lien:hover {
+    color: var(--color-text);
 }
 
 /* Messages */
@@ -267,7 +295,7 @@ h2 {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 420px;
     gap: var(--space-9);
-    align-items: start;
+    align-items: center;
 }
 
 .surtitre {
@@ -290,13 +318,6 @@ h2 {
     max-width: 36em;
     color: var(--color-text-muted);
     font-size: var(--text-lg);
-}
-
-.accueil-jeu {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: var(--space-7);
 }
 
 .grille-demo {
@@ -334,26 +355,6 @@ h2 {
     font-family: var(--font-mono);
     font-size: var(--text-sm);
     color: var(--color-text-muted);
-}
-
-.regles {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-width: 18em;
-}
-
-.regles li {
-    display: flex;
-    gap: var(--space-3);
-    margin-bottom: var(--space-5);
-}
-
-.regles-numero {
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    padding-top: 2px;
 }
 
 /* Cartes */
@@ -571,18 +572,63 @@ h2 {
     gap: var(--space-5);
 }
 
-/* Accueil : le bloc de connexion est aligné sur le titre */
-.accueil .carte--auth {
-    margin-top: var(--space-7);
+/* Accueil : bandeau des trois étapes */
+.etapes {
+    margin-top: var(--space-9);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
 }
 
-.accueil-regles p {
+.etapes-entete {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+}
+
+.etapes-entete h2 {
     margin: 0;
+    font-size: var(--text-xl);
 }
 
-/* Page des règles */
+.etapes-liste {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+}
+
+.etapes-liste li {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+}
+
+.etapes-numero {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+.etapes-liste h3 {
+    margin: var(--space-2) 0 var(--space-2);
+    font-size: var(--text-lg);
+}
+
+.etapes-liste p {
+    margin: 0;
+    color: var(--color-text-muted);
+}
+
+/* Page des règles : colonne de lecture centrée */
 .regles-detail {
     max-width: 44rem;
+    margin: 0 auto;
 }
 
 .regles-detail h1 {
@@ -614,11 +660,19 @@ h2 {
 }
 
 .regles-detail .grille-demo {
-    margin: var(--space-5) 0 0;
+    margin: var(--space-6) 0 0;
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
 }
 
 .regles-detail .legende {
-    max-width: 24rem;
+    max-width: 30rem;
+    text-align: center;
     font-family: var(--font-sans);
 }
 
@@ -633,13 +687,13 @@ h2 {
         gap: var(--space-7);
     }
 
+    .etapes-liste {
+        grid-template-columns: 1fr;
+    }
+
     .titre-principal,
     .regles-detail h1 {
         font-size: var(--text-2xl);
-    }
-
-    .accueil .carte--auth {
-        margin-top: 0;
     }
 
     :root {

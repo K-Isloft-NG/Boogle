@@ -52,7 +52,19 @@ use Boogle\Core\Session;
     </main>
 
     <footer class="pied">
-        <p>Boogle, projet de SAÉ, BUT Informatique, Université Gustave Eiffel.</p>
+        <div class="pied-interieur">
+            <p class="pied-mention">© <?= date('Y') ?> Boogle. Projet de SAÉ, BUT Informatique, Université Gustave Eiffel.</p>
+            <nav class="pied-nav" aria-label="Liens du pied de page">
+                <a class="lien" href="/">Accueil</a>
+                <a class="lien" href="/?page=comment-jouer">Comment jouer</a>
+                <?php if (Session::estConnecte()): ?>
+                    <a class="lien" href="/?page=parties">Mes parties</a>
+                <?php else: ?>
+                    <a class="lien" href="/?page=inscription">Créer un compte</a>
+                    <a class="lien" href="/?page=mot-de-passe-oublie">Mot de passe oublié</a>
+                <?php endif; ?>
+            </nav>
+        </div>
     </footer>
 </body>
 </html>
