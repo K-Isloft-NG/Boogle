@@ -1,0 +1,13 @@
+# Secrets : ne jamais versionner
+.env
+.env.local
+
+# Logs
+logs/*
+!logs/.gitkeep
+
+# Divers
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
