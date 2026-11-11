@@ -1,8 +1,7 @@
 -- Jeu de données de test pour le schéma boggle.
 -- Dépendances : exécuter sql/01_schema.sql puis sql/02_schema_boggle.sql.
 -- Exécution : psql -v ON_ERROR_STOP=1 -d <base> -f sql/03_donnees_test.sql
--- Réservé à une base locale de développement : les identifiants >= 9000
--- sont supprimés selon les mêmes critères que le script de nettoyage.
+-- À ne jamais exécuter sur une base contenant des données réelles : les suppressions se font par seuil d'identifiant (>= 9000).
 BEGIN;
 SET search_path TO boggle;
 DELETE FROM boggle.participation WHERE id_partie >= 9000;
@@ -32,24 +31,7 @@ $jeu${
     "taille_min_mot": 3,
     "politique_score": "classique"
   },
-  "grille": [
-    "G",
-    "A",
-    "I",
-    "R",
-    "R",
-    "U",
-    "V",
-    "E",
-    "QU",
-    "E",
-    "O",
-    "T",
-    "A",
-    "S",
-    "M",
-    "J"
-  ],
+  "grille": ["G","A","I","R","R","U","V","E","QU","E","O","T","A","S","M","J"],
   "solutions": [
     "OUI",
     "VIE",
@@ -66,11 +48,7 @@ $jeu${
       "propositions": [
         {
           "mot": "OUI",
-          "chemin": [
-            10,
-            5,
-            2
-          ],
+          "chemin": [10,5,2],
           "t_ms": 10000,
           "valide": true,
           "points": 1,
@@ -78,12 +56,7 @@ $jeu${
         },
         {
           "mot": "VIRE",
-          "chemin": [
-            6,
-            2,
-            3,
-            7
-          ],
+          "chemin": [6,2,3,7],
           "t_ms": 20000,
           "valide": true,
           "points": 1,
@@ -91,12 +64,7 @@ $jeu${
         },
         {
           "mot": "RIVE",
-          "chemin": [
-            3,
-            2,
-            6,
-            7
-          ],
+          "chemin": [3,2,6,7],
           "t_ms": 30000,
           "valide": true,
           "points": 1,
@@ -112,10 +80,7 @@ $jeu${
         },
         {
           "mot": "VI",
-          "chemin": [
-            6,
-            2
-          ],
+          "chemin": [6,2],
           "t_ms": 50000,
           "valide": false,
           "points": 0,
@@ -129,11 +94,7 @@ $jeu${
       "propositions": [
         {
           "mot": "VIE",
-          "chemin": [
-            6,
-            2,
-            7
-          ],
+          "chemin": [6,2,7],
           "t_ms": 10000,
           "valide": true,
           "points": 1,
@@ -141,11 +102,7 @@ $jeu${
         },
         {
           "mot": "OUI",
-          "chemin": [
-            10,
-            5,
-            2
-          ],
+          "chemin": [10,5,2],
           "t_ms": 20000,
           "valide": true,
           "points": 1,
@@ -153,11 +110,7 @@ $jeu${
         },
         {
           "mot": "VIE",
-          "chemin": [
-            6,
-            2,
-            7
-          ],
+          "chemin": [6,2,7],
           "t_ms": 30000,
           "valide": false,
           "points": 0,
@@ -165,12 +118,7 @@ $jeu${
         },
         {
           "mot": "GAIR",
-          "chemin": [
-            0,
-            1,
-            2,
-            3
-          ],
+          "chemin": [0,1,2,3],
           "t_ms": 40000,
           "valide": false,
           "points": 0,
@@ -204,24 +152,7 @@ $jeu${
     "taille_min_mot": 3,
     "politique_score": "classique"
   },
-  "grille": [
-    "G",
-    "A",
-    "I",
-    "R",
-    "R",
-    "U",
-    "V",
-    "E",
-    "QU",
-    "E",
-    "O",
-    "T",
-    "A",
-    "S",
-    "M",
-    "J"
-  ],
+  "grille": ["G","A","I","R","R","U","V","E","QU","E","O","T","A","S","M","J"],
   "solutions": [
     "OUI",
     "VIE",
@@ -238,10 +169,7 @@ $jeu${
       "propositions": [
         {
           "mot": "QUE",
-          "chemin": [
-            8,
-            9
-          ],
+          "chemin": [8,9],
           "t_ms": 10000,
           "valide": true,
           "points": 1,
@@ -249,11 +177,7 @@ $jeu${
         },
         {
           "mot": "RUE",
-          "chemin": [
-            4,
-            5,
-            9
-          ],
+          "chemin": [4,5,9],
           "t_ms": 20000,
           "valide": true,
           "points": 1,
@@ -275,11 +199,7 @@ $jeu${
       "propositions": [
         {
           "mot": "AIR",
-          "chemin": [
-            1,
-            2,
-            3
-          ],
+          "chemin": [1,2,3],
           "t_ms": 10000,
           "valide": true,
           "points": 1,
@@ -287,11 +207,7 @@ $jeu${
         },
         {
           "mot": "OUI",
-          "chemin": [
-            10,
-            5,
-            2
-          ],
+          "chemin": [10,5,2],
           "t_ms": 20000,
           "valide": true,
           "points": 1,
@@ -325,24 +241,7 @@ $jeu${
     "taille_min_mot": 3,
     "politique_score": "classique"
   },
-  "grille": [
-    "G",
-    "A",
-    "I",
-    "R",
-    "R",
-    "U",
-    "V",
-    "E",
-    "QU",
-    "E",
-    "O",
-    "T",
-    "A",
-    "S",
-    "M",
-    "J"
-  ],
+  "grille": ["G","A","I","R","R","U","V","E","QU","E","O","T","A","S","M","J"],
   "solutions": [
     "OUI",
     "VIE",
@@ -359,11 +258,7 @@ $jeu${
       "propositions": [
         {
           "mot": "OUI",
-          "chemin": [
-            10,
-            5,
-            2
-          ],
+          "chemin": [10,5,2],
           "t_ms": 10000,
           "valide": true,
           "points": 1,
@@ -377,11 +272,7 @@ $jeu${
       "propositions": [
         {
           "mot": "VIE",
-          "chemin": [
-            6,
-            2,
-            7
-          ],
+          "chemin": [6,2,7],
           "t_ms": 10000,
           "valide": true,
           "points": 1,
@@ -401,24 +292,7 @@ $jeu${
     "taille_min_mot": 3,
     "politique_score": "classique"
   },
-  "grille": [
-    "G",
-    "A",
-    "I",
-    "R",
-    "R",
-    "U",
-    "V",
-    "E",
-    "QU",
-    "E",
-    "O",
-    "T",
-    "A",
-    "S",
-    "M",
-    "J"
-  ],
+  "grille": ["G","A","I","R","R","U","V","E","QU","E","O","T","A","S","M","J"],
   "solutions": [
     "OUI",
     "VIE",
@@ -446,24 +320,7 @@ $jeu${
     "taille_min_mot": 3,
     "politique_score": "classique"
   },
-  "grille": [
-    "G",
-    "A",
-    "I",
-    "R",
-    "R",
-    "U",
-    "V",
-    "E",
-    "QU",
-    "E",
-    "O",
-    "T",
-    "A",
-    "S",
-    "M",
-    "J"
-  ],
+  "grille": ["G","A","I","R","R","U","V","E","QU","E","O","T","A","S","M","J"],
   "solutions": [
     "OUI",
     "VIE",
@@ -480,11 +337,7 @@ $jeu${
       "propositions": [
         {
           "mot": "OUI",
-          "chemin": [
-            10,
-            5,
-            2
-          ],
+          "chemin": [10,5,2],
           "t_ms": 10000,
           "valide": true,
           "points": 1,
@@ -518,23 +371,7 @@ $jeu${
     "taille_min_mot": 3,
     "politique_score": "classique"
   },
-  "grille": [
-    "C",
-    "A",
-    "T",
-    "S",
-    "E",
-    "R",
-    "O",
-    "D",
-    "E",
-    "N",
-    "B",
-    "U",
-    "N",
-    "I",
-    "T"
-  ],
+  "grille": ["C","A","T","S","E","R","O","D","E","N","B","U","N","I","T"],
   "solutions": [
     "CAT",
     "CATS",
@@ -550,13 +387,7 @@ $jeu${
       "propositions": [
         {
           "mot": "UNITE",
-          "chemin": [
-            11,
-            12,
-            13,
-            14,
-            8
-          ],
+          "chemin": [11,12,13,14,8],
           "t_ms": 10000,
           "valide": true,
           "points": 2,
@@ -564,12 +395,7 @@ $jeu${
         },
         {
           "mot": "CODE",
-          "chemin": [
-            0,
-            6,
-            7,
-            8
-          ],
+          "chemin": [0,6,7,8],
           "t_ms": 20000,
           "valide": true,
           "points": 1,
@@ -577,11 +403,7 @@ $jeu${
         },
         {
           "mot": "DEN",
-          "chemin": [
-            7,
-            8,
-            9
-          ],
+          "chemin": [7,8,9],
           "t_ms": 30000,
           "valide": true,
           "points": 1,
@@ -595,11 +417,7 @@ $jeu${
       "propositions": [
         {
           "mot": "CAT",
-          "chemin": [
-            0,
-            1,
-            2
-          ],
+          "chemin": [0,1,2],
           "t_ms": 10000,
           "valide": true,
           "points": 1,
@@ -607,11 +425,7 @@ $jeu${
         },
         {
           "mot": "BUN",
-          "chemin": [
-            10,
-            11,
-            12
-          ],
+          "chemin": [10,11,12],
           "t_ms": 20000,
           "valide": true,
           "points": 1,
@@ -619,11 +433,7 @@ $jeu${
         },
         {
           "mot": "ATS",
-          "chemin": [
-            1,
-            2,
-            3
-          ],
+          "chemin": [1,2,3],
           "t_ms": 30000,
           "valide": false,
           "points": 0,

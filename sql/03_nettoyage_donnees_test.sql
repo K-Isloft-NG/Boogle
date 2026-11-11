@@ -1,4 +1,6 @@
--- Nettoyage du jeu de test sur une base locale de développement.
+-- Nettoyage du jeu de données de test du schéma boggle.
+-- Exécution : psql -v ON_ERROR_STOP=1 -d <base> -f sql/03_nettoyage_donnees_test.sql
+-- À ne jamais exécuter sur une base contenant des données réelles : les suppressions se font par seuil d'identifiant (>= 9000).
 BEGIN;
 DELETE FROM boggle.participation WHERE id_partie >= 9000;
 DELETE FROM boggle.partie WHERE id_partie >= 9000;

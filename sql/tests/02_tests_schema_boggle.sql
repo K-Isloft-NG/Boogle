@@ -145,6 +145,6 @@ ROLLBACK TO SAVEPOINT test;
 -- -----------------------------------------------------------------------------
 \echo 'TEST 16 cascade partie -> participation      attendu : nb_participations_restantes = 0'
 DELETE FROM partie WHERE id_partie = 1;
-SELECT count(*) AS nb_participations_restantes FROM participation;
+SELECT count(*) AS nb_participations_restantes FROM participation WHERE id_partie = 1;
 
 ROLLBACK;
