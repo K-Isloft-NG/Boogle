@@ -14,10 +14,11 @@ final class UtilisateurRepository
     {
     }
 
+    /** Retourne le compte actif correspondant à cette adresse ; un compte désactivé est traité comme absent. */
     public function trouverParEmail(string $email): ?Utilisateur
     {
         $requete = $this->pdo->prepare(
-            'SELECT id, pseudo, email, mot_de_passe_hash FROM php_utilisateurs WHERE email = :email'
+            'SELECT id, pseudo, email, mot_de_passe_hash FROM php_utilisateurs WHERE email = :email AND est_actif = TRUE'
         );
         $requete->execute([':email' => $email]);
         $ligne = $requete->fetch();
@@ -69,10 +70,11 @@ final class UtilisateurRepository
         }
     }
 
+    /** Retourne le compte actif correspondant à cet identifiant ; un compte désactivé est traité comme absent. */
     public function trouverParId(int $id): ?Utilisateur
     {
         $requete = $this->pdo->prepare(
-            'SELECT id, pseudo, email, mot_de_passe_hash FROM php_utilisateurs WHERE id = :id'
+            'SELECT id, pseudo, email, mot_de_passe_hash FROM php_utilisateurs WHERE id = :id AND est_actif = TRUE'
         );
         $requete->execute([':id' => $id]);
         $ligne = $requete->fetch();

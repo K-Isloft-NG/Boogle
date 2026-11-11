@@ -1,13 +1,23 @@
 -- Boogle : schéma du module Dev Web (L3)
 -- Tables préfixées php_ ; clés primaires en SERIAL.
+-- php_utilisateurs est la table des joueurs pour tout le projet : le module L2
+-- y fait référence (boggle.participation.id_utilisateur). Ne pas renommer la table ni la colonne id.
 
 CREATE TABLE IF NOT EXISTS php_utilisateurs (
     id                SERIAL PRIMARY KEY,
     pseudo            VARCHAR(30)  NOT NULL UNIQUE,
     email             VARCHAR(254) NOT NULL UNIQUE,
     mot_de_passe_hash VARCHAR(255) NOT NULL,
-    date_creation     TIMESTAMP    NOT NULL DEFAULT NOW()
+    date_creation     TIMESTAMP    NOT NULL DEFAULT NOW(),
+    -- Un joueur qui a joué n'est jamais supprimé : son compte est désactivé.
+    est_actif         BOOLEAN      NOT NULL DEFAULT TRUE
 );
+
+-- Mise à niveau d'une base créée avant l'ajout de est_actif (sans effet sur une base neuve).
+ALTER TABLE php_utilisateurs ADD COLUMN IF NOT EXISTS est_actif BOOLEAN NOT NULL DEFAULT TRUE;
+
+-- Unicité du pseudo sans tenir compte de la casse, en plus du contrôle fait en PHP.
+CREATE UNIQUE INDEX IF NOT EXISTS idx_utilisateurs_pseudo_minuscule ON php_utilisateurs (LOWER(pseudo));
 
 -- Jeton de réinitialisation : on ne stocke que le hash (SHA-256) du jeton envoyé par e-mail.
 CREATE TABLE IF NOT EXISTS php_reinitialisations_mdp (
