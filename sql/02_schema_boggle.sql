@@ -15,7 +15,7 @@
 BEGIN;
 
 -- -----------------------------------------------------------------------------
--- 0. Schéma dédié
+-- 1. Schéma dédié
 --    Isole les objets du projet du schéma "public" : le script peut être rejoué
 --    sans risque pour d'autres objets de la base.
 -- -----------------------------------------------------------------------------

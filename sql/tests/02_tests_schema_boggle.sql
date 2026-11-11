@@ -5,6 +5,10 @@
 -- SAVEPOINT. L'erreur est attendue : on revient au SAVEPOINT et on passe au
 -- test suivant. Tout est annulé à la fin (ROLLBACK) : la base reste vide.
 --
+-- ATTENTION : base locale vide ou de développement uniquement. Le jeu insère
+-- test1@exemple.fr et test2@exemple.fr : si ces e-mails existent, l'insertion
+-- échoue, même si le ROLLBACK final annule les données insérées.
+--
 -- Exécution (SANS ON_ERROR_STOP, les erreurs sont le résultat attendu) :
 --   psql -d <base> -f sql/tests/02_tests_schema_boggle.sql
 --
