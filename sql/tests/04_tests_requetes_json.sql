@@ -1,4 +1,5 @@
 -- Contrôles des requêtes JSON sur le jeu de données de test.
+-- À lancer sans les données de volume (sql/05_donnees_volume.sql) : les requêtes portent sur toute la table.
 -- Chaque contrôle doit afficher 0 écart.
 
 \echo 'Contrôle 1 : écarts attendus 0'

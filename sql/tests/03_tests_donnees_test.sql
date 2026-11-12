@@ -1,4 +1,5 @@
 -- Contrôles du jeu de données sur une base locale de développement.
+-- À lancer sans les données de volume (sql/05_donnees_volume.sql) : les requêtes portent sur toute la table.
 SET search_path TO boggle;
 
 \echo 'Comptages du jeu (chaque nombre doit correspondre à attendu)'
